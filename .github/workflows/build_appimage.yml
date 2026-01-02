@@ -60,7 +60,8 @@ jobs:
 
         # Download AppImage plugin
         wget https://github.com/linuxdeploy/linuxdeploy-plugin-appimage/releases/download/continuous/linuxdeploy-plugin-appimage-x86_64.AppImage
-        chmod +x linuxdeploy-plugin-appimage-x86_64.AppImage
+        mv linuxdeploy-plugin-appimage-x86_64.AppImage linuxdeploy-plugin-appimage
+        chmod +x linuxdeploy-plugin-appimage
         
         # Run linuxdeploy
         # We need to tell linuxdeploy where the executable is so it can trace dependencies (though manually copied libs might be enough, it's safer to let it inspect)
@@ -69,7 +70,6 @@ jobs:
           --executable AppDir/usr/bin/desktop_file_maker \
           --desktop-file desktop_file_maker.desktop \
           --icon-file linux/packaging/data/com.example.desktop_file_maker.png \
-          --plugin appimage \
           --output appimage
 
     - name: Upload AppImage
